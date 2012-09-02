@@ -1,6 +1,7 @@
 /* @@@LICENSE
 *
 *      Copyright (c) 2008-2012 Hewlett-Packard Development Company, L.P.
+*			2012 Eric Blade
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -2293,6 +2294,9 @@ bool DisplayManager::updateState (int eventType)
             break;
 	case DISPLAY_EVENT_HOME_BUTTON_UP:
 	    {
+		if(HostBase::instance()->homeButtonWakesUpScreen()) {
+			m_lastEvent = Time::curTimeMs();
+		}
 		m_currentState->handleEvent (DisplayEventHomeKeyPress);
 	    }
 	    break;
